@@ -1,1 +1,16 @@
 Small blog written in Ruby (Sinatra, Haml+Sass, Activerecord)
+
+How to run: (process will be improved soon)
+  1) In project directory run 
+    # rake gems:install. 
+     This target will install project dependencies (rack-0.9.1, haml-0.2.7)
+  2) Install sinatra from git repository (It's old version in gems)
+    # git clone git://github.com/sinatra/sinatra.git
+    # cd sinatra
+    # rake install (There can be some ruby error, run with --trace, find errorneous line no. in Rackefile and delete this line)  
+  3) Adjust database connection parameters in configuration.rb
+  4) Create database blog_development and run 
+    # rake db:create to init schema
+  5) Run to start up server. Site should be available on http://localhost:4567
+    # ruby main.rb
+  

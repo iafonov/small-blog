@@ -13,7 +13,8 @@ end
 namespace 'db' do
   task :create do  
     require 'activerecord'
-  
+    require 'configuration'    
+
     ActiveRecord::Base.establish_connection(
       :adapter => 'mysql',
       :encoding =>  'utf8',
@@ -41,6 +42,6 @@ end
 
 namespace 'gems' do
   task :install do
-
+    sh 'cd /tmp; sudo gem install rack haml'
   end
 end

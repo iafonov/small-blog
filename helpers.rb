@@ -3,7 +3,7 @@ require 'haml'
 
 helpers do
   def partial(page, options={})
-    haml page, options.merge!(:layout => false)
+    haml ("_" + page.to_s).intern, options.merge!(:layout => false)
   end
 
   def for_me(text)
