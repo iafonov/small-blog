@@ -1,0 +1,17 @@
+.post
+  .post-title
+    = @post.title
+  .post-body= @post.body    
+
+.post-title= @post.comments.count != 0 ? "Comments:" : "There is no comments yet."
+%a{:name => 'comments'}
+%ol{ :class => 'comments' }
+  - for comment in @post.comments
+    %li{ :class => 'comment'}= comment.body
+
+%form{:action=> "#{@post.id}/add_comment", :method=>"post", :id => 'add-comment-form'}
+  %ul
+    %li
+      %textarea{:id => 'comment-area', :name => "body"}    
+    %li
+      %input{:id => 'comment-submit',:type=>"submit", :value=>"Add comment"}

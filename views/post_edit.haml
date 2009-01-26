@@ -1,0 +1,10 @@
+%h3 Editing post:
+
+%form{ :method => "post"}
+  Title:
+  %input{:name => "title", :value => "#{@post.title}"} 
+  %br
+  Body: 
+  %textarea{:name=>"body", :cols => 80,  :rows => 40}= @post.body
+  %br
+  %input{:type=>"submit"}

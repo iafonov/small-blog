@@ -1,0 +1,43 @@
+!!!
+%html
+  %meta{"http-equiv" => 'Content-Type', "content" => 'text/html'}
+  %head
+    %title Igor Afonov
+    %link{ :rel=>"stylesheet", :href=>"/style.css", :type=>"text/css"}
+  %body{ :id => "about" }
+    = partial :_navigation    
+    
+    %p 
+      %img{ :id => 'me', :src => '/me.jpg', :align => 'right' }
+      .mark Education
+      %p I was born in Donetsk in 1985. In 2007 I've graduated from Donetsk National Technical University (I've recieved master degree in CS and bachelor degree in buisness managment)......
+      
+      %p I'm working as software developer..... Software development for me is more than just a work - it's my hobby. Specific areas of my professional interest include:
+      
+      .mark Interests
+      Java - I have 2 years expirience in working with C++ (I've developed an enterprise 3D CAD system) and C++. Migrating from C++ to Java was like migrating from ... to ...
+      %ul         
+        %li Java itself
+        %li Dependency injection containers (Google Guice, Tapestry IoC). I have expirience in building my own, custom IoC container based on annotations.
+        %li Dynamic languages built on top of JVM (Groovy, JRuby).        
+        %li Web-frameworks: Tapestry 5, custom made frameworks....
+      
+      Ruby - the main feature of ruby that attracts me is its outstanding flexibilty and code expressiveness....
+      %ul        
+        %li 
+          Ligtweight web-framework Sinatra (This site is powered by Sinatra, 
+          %a{ :href => "/" } Read more...
+          )
+        %li Haml+Sass template engine
+
+      C++
+      %ul
+        %li I've worked for 1.5 years with C++ building 3D CAD application
+        
+    
+      %p 
+
+      %p
+        You can contact me by 
+        %a{:href => "mailto:afonov@gmail.com"} afonov@gmail.com
+
