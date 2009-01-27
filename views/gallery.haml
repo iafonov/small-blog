@@ -2,7 +2,13 @@
 %html
   %meta{"http-equiv" => 'Content-Type', "content" => 'text/html'}
   %head
-    %title Micro blog
     %link{ :rel=>"stylesheet", :href=>"/style.css", :type=>"text/css"}    
-  %body{ :id => "gallery" }
-    = partial :navigation    
+    %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"}
+
+    %title Gallery    
+  %body{ :id => "gallery" }    
+    =partial :navigation    
+    %br
+
+    - for image in @images
+      %img{:src => "gallery/previews/#{image}"}

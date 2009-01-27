@@ -2,8 +2,16 @@ Small blog written in Ruby (Sinatra, Haml+Sass, Activerecord)
 
 How to run: (process will be improved soon)
   1) In project directory run 
-    # rake gems:install. 
+    # rake gems:install
      This target will install project dependencies (rack-0.9.1, haml-0.2.7)
+  2) Install rmagick 
+      on Fedora
+      # sudo smart install ruby-RMagick
+      
+      on Debian/Ubuntu
+      # sudo apt-get install libmagick9-dev
+      # sudo gem install RMagick
+  3) Run rake gallery:fill 'path to folder with images' to fill gallery
   2) Install sinatra from git repository (It's old version in gems)
     # git clone git://github.com/sinatra/sinatra.git
     # cd sinatra
