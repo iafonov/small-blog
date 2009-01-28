@@ -44,7 +44,7 @@ namespace 'gallery' do
   end
 
   def create_resized_image(image, gallery_name)
-    photo = image.resize_to_fit(1024, 1024)
+    photo = image.resize_to_fit(800, 800)
     filename = File.basename(image.base_filename)
     FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}")
     photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 80 }
@@ -76,7 +76,7 @@ namespace 'gallery' do
     Dir.foreach(src_dir) do |gallery_dir|  
       gallery_path = File.join(File.join(Dir.pwd, src_dir), gallery_dir)      
       if (File.directory?(gallery_path))        
-        process_directory(gallery_path, gallery_dir)      
+        process_directory(gallery_path, gallery_dir)  
       end
     end
   end

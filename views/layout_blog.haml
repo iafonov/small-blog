@@ -5,7 +5,8 @@
     %link{ :rel=>"stylesheet", :href=>"/style.css", :type=>"text/css"}
     %title Blog
   %body{ :id => "blog" }
-    = partial :navigation   
-    %br 
-    #flash= @flash
-    = yield
+    #content
+      = partial :navigation   
+      %br 
+      #flash= @flash
+      = yield

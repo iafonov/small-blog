@@ -3,12 +3,21 @@
   %meta{"http-equiv" => 'Content-Type', "content" => 'text/html'}
   %head
     %link{ :rel=>"stylesheet", :href=>"/style.css", :type=>"text/css"}    
-    %script{ :type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"}
+    %link{ :rel=>"stylesheet", :href=>"/css/lightbox.css", :type=>"text/css"}    
+
+    %script{ :type => "text/javascript", :src => "/js/prototype.js"}
+    %script{ :type => "text/javascript", :src => "/js/scriptaculous.js?load=effects,builder"}
+    %script{ :type => "text/javascript", :src => "/js/lightbox.js"}
 
     %title Gallery    
   %body{ :id => "gallery" }    
-    =partial :navigation    
-    %br
-
-    - for image in @images
-      %img{:src => "gallery/previews/#{image}"}
+    #content
+      =partial :navigation    
+      %br
+  
+      - for gallery in @galleries        
+        .mark= gallery.name
+        .gallery
+          - for preview in gallery.previews
+            %a{:href=> "gallery/#{gallery.name}/#{preview}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}."}     
+              %img{:src => "gallery/#{gallery.name}/previews/#{preview}"}
