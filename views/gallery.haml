@@ -18,6 +18,7 @@
       - for gallery in @galleries        
         .mark= gallery.name
         .gallery
-          - for preview in gallery.previews
-            %a{:href=> "gallery/#{gallery.name}/#{preview}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}."}     
-              %img{:src => "gallery/#{gallery.name}/previews/#{preview}"}
+          - for image in gallery.images
+            %a{:href=> "#{image}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}."}     
+              %img{:src => "#{image.preview}"}
+              

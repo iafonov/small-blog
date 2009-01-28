@@ -36,18 +36,26 @@ end
 namespace 'gallery' do  
   GALLERY_IMAGES_DIR = "public/gallery"
 
-  def create_thumbnail(image, gallery_name)
-    preview = image.crop_resized(100, 100, Magick::NorthGravity)     
+  def create_thumbnail(image, gallery_name)    
+    if (image.columns >=  image.rows) 
+      crop_factor = image.rows
+    else 
+      crop_factor = image.columns 
+    end
+
+    preview = image.crop_resized(crop_factor, crop_factor, Magick::NorthGravity)
+    preview.thumbnail!(100, 100)
+    
     filename = File.basename(image.base_filename)
     FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews")
-    preview.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews/#{filename}") { self.quality = 70 }    
+    preview.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews/#{filename}") { self.quality = 80 }    
   end
 
   def create_resized_image(image, gallery_name)
     photo = image.resize_to_fit(800, 800)
     filename = File.basename(image.base_filename)
     FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}")
-    photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 80 }
+    photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 75 }
   end
 
   def process_directory(dir, gallery_name)    

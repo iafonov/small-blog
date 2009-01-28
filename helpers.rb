@@ -12,4 +12,8 @@ helpers do
       return engine.render 
     end
   end
+
+  def get_photo_date_taken(photo)
+
+  end
 end
