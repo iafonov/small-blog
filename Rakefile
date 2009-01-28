@@ -33,9 +33,34 @@ namespace 'db' do
   end
 end
 
-namespace 'gallery' do
-  GALLERY_PREVIEW_DIR = "public/gallery/previews"
+namespace 'gallery' do  
   GALLERY_IMAGES_DIR = "public/gallery"
+
+  def create_thumbnail(image, gallery_name)
+    preview = image.crop_resized(100, 100, Magick::NorthGravity)     
+    filename = File.basename(image.base_filename)
+    FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews")
+    preview.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews/#{filename}") { self.quality = 70 }    
+  end
+
+  def create_resized_image(image, gallery_name)
+    photo = image.resize_to_fit(1024, 1024)
+    filename = File.basename(image.base_filename)
+    FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}")
+    photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 80 }
+  end
+
+  def process_directory(dir, gallery_name)    
+    Dir.foreach(dir) do |image|    
+      if (image.include? ".jpg")
+        puts "Processing #{dir}/#{image}" 
+        
+        image = Magick::Image.read("#{dir}/#{image}").first        
+        create_thumbnail(image, gallery_name)
+        create_resized_image(image, gallery_name)        
+      end
+    end
+  end
 
   desc "Fill gallery with images."
   task 'fill' do
@@ -43,21 +68,17 @@ namespace 'gallery' do
       raise "usage rake gallery:fill src= #folder with images"
     end
 
+    FileUtils.rm_rf GALLERY_IMAGES_DIR
+    FileUtils.mkdir_p GALLERY_IMAGES_DIR
+
     src_dir = ENV["src"]    
 
-    Dir.foreach(src_dir) {|image_file|
-      if (image_file != '.' and image_file != '..')  
-        puts "Processing #{image_file}" 
-        
-        image = Magick::Image.read("#{src_dir}/#{image_file}").first
-
-        preview = image.crop_resized(100, 100, Magick::NorthGravity)     
-        preview.write("#{GALLERY_PREVIEW_DIR}/#{image_file}") { self.quality = 70 }
-
-        photo = image.resize_to_fit(1024, 1024)
-        photo.write("#{GALLERY_IMAGES_DIR}/#{image_file}") { self.quality = 80 }
+    Dir.foreach(src_dir) do |gallery_dir|  
+      gallery_path = File.join(File.join(Dir.pwd, src_dir), gallery_dir)      
+      if (File.directory?(gallery_path))        
+        process_directory(gallery_path, gallery_dir)      
       end
-    }
+    end
   end
 end
 
