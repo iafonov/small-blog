@@ -8,6 +8,7 @@
     %script{ :type => "text/javascript", :src => "/js/prototype.js"}
     %script{ :type => "text/javascript", :src => "/js/scriptaculous.js?load=effects,builder"}
     %script{ :type => "text/javascript", :src => "/js/lightbox.js"}
+    %script{ :type => "text/javascript", :src => "/js/qtip.js"}
 
     %title Gallery    
   %body{ :id => "gallery" }    
@@ -19,6 +20,6 @@
         .mark= gallery.name
         .gallery
           - for image in gallery.images
-            %a{:href=> "#{image}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}."}     
+            %a{:href=> "#{image}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}", :tiptitle => "In this case it's all < a > tags<br><b>Fuck it all!</b>"}     
               %img{:src => "#{image.preview}"}
               

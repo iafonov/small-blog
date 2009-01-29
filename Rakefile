@@ -48,14 +48,14 @@ namespace 'gallery' do
     
     filename = File.basename(image.base_filename)
     FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews")
-    preview.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews/#{filename}") { self.quality = 80 }    
+    preview.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/previews/#{filename}") { self.quality = 95 }    
   end
 
   def create_resized_image(image, gallery_name)
     photo = image.resize_to_fit(800, 800)
     filename = File.basename(image.base_filename)
     FileUtils.mkdir_p File.join(Dir.pwd, "#{GALLERY_IMAGES_DIR}/#{gallery_name}")
-    photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 75 }
+    photo.write("#{GALLERY_IMAGES_DIR}/#{gallery_name}/#{filename}") { self.quality = 95 }
   end
 
   def process_directory(dir, gallery_name)    

@@ -18,7 +18,6 @@ end
 
 class Gallery
   attr_accessor :name
-
   attr_accessor :images
 
   def initialize(name)
