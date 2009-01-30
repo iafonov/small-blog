@@ -1,18 +1,29 @@
+require 'rubygems'
+require 'RMagick'
+
 class Image  
-  attr_accessor :image
+  EXIF_DATE_FORMAT = '%Y:%m:%d %H:%M:%S'  
+
+  attr_accessor :image_path
   attr_accessor :path
 
-  def initialize(path, image)
-    @image = image
-    @path = path    
+  def initialize(path_to_gallery, image)    
+    @image_path = image
+    @path = path_to_gallery    
+    @image = Magick::Image.read(File.join(Dir.pwd, "public/" + path)).first
   end
 
-  def preview() 
-    "#{path}/previews/#{image}"
+  def preview_path
+    "#{@path}/previews/#{@image_path}"
   end
 
-  def to_s()
-    "#{path}/#{image}"
+  def path
+    "#{@path}/#{@image_path}"
+  end
+
+  def date_taken        
+    date  = @image.get_exif_by_entry('DateTime')[0][1]    
+    DateTime.strptime(date, EXIF_DATE_FORMAT) if date    
   end
 end
 
@@ -33,11 +44,8 @@ end
 get '/gallery' do
   @galleries = Array.new
 
-  puts "shit. works!"
-
   Dir.foreach("public/gallery") do |gallery|
-    if gallery != "." && gallery != ".."
-      
+    if (gallery != ".") && (gallery != "..")      
       gallery_path = "gallery/#{gallery}"
       gallery_full_path = File.join(Dir.pwd, "public")
       gallery_full_path = File.join(gallery_full_path, "gallery/#{gallery}")
