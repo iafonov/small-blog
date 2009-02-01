@@ -1,9 +1,5 @@
 class Post < ActiveRecord::Base
-  has_many :comments
-
-  def formatted_body
-    haml body
-  end
+  has_many :comments  
 end
 
 class Comment  < ActiveRecord::Base
