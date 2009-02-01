@@ -3,7 +3,7 @@ require 'haml'
 
 helpers do
   def partial(page, options={})
-    haml ("_" + page.to_s).intern, options.merge!(:layout => false)
+    haml ("partials/_" + page.to_s).intern, options.merge!(:layout => false)
   end
 
   def for_me(text)
@@ -13,7 +13,7 @@ helpers do
     end
   end
 
-  def get_photo_date_taken(photo)
-
+  def format(text)
+    haml text
   end
 end

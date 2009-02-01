@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'activerecord'
 
-require 'schema/schema.rb'
+require 'model/schema.rb'
 
 require 'util/flash.rb'
 require 'util/sessions.rb'
@@ -43,7 +43,7 @@ get '/posts/delete/:id' do secure
 end
 
 get '/posts/:id' do
-  @post = Post.find(params[:id])
+  @post = Post.find(params[:id])  
   haml :post_view, :layout => :layout_blog
 end
 

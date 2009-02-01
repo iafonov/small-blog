@@ -2,20 +2,16 @@ require 'rubygems'
 require 'sinatra'
 require 'RMagick'
 
+
 namespace 'db' do
   desc "Create db schema"
-  task :create do  
-    require 'activerecord'
-    require 'configuration'    
+  task :create do
+    mode = :development unless ENV.include?("mode")    
 
-    ActiveRecord::Base.establish_connection(
-      :adapter => 'mysql',
-      :encoding =>  'utf8',
-      :username => 'root',
-      :host => 'localhost',
-      :socket => '/var/lib/mysql/mysql.sock',
-      :database => 'blog_development'
-    )
+    require 'activerecord'
+    require 'config/config.rb'
+       
+    connect_to_db(mode)    
   
     ActiveRecord::Migration.create_table :posts do |t|
       t.string :title
@@ -37,11 +33,7 @@ namespace 'gallery' do
   GALLERY_IMAGES_DIR = "public/gallery"
 
   def create_thumbnail(image, gallery_name)    
-    if (image.columns >=  image.rows) 
-      crop_factor = image.rows
-    else 
-      crop_factor = image.columns 
-    end
+    (image.columns >=  image.rows) ? crop_factor = image.rows : crop_factor = image.columns    
 
     preview = image.crop_resized(crop_factor, crop_factor, Magick::NorthGravity)
     preview.thumbnail!(100, 100)
@@ -60,7 +52,7 @@ namespace 'gallery' do
 
   def process_directory(dir, gallery_name)    
     Dir.foreach(dir) do |image|    
-      if (image.include? ".jpg")
+      if image.include? ".jpg"
         puts "Processing #{dir}/#{image}" 
         
         image = Magick::Image.read("#{dir}/#{image}").first        
@@ -87,12 +79,5 @@ namespace 'gallery' do
         process_directory(gallery_path, gallery_dir)  
       end
     end
-  end
-end
-
-namespace 'gems' do
-  desc "Fucked target/In progress."
-  task :install do
-    sh 'cd /tmp; sudo gem install rack haml rmagick'
   end
 end

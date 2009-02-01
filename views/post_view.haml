@@ -1,7 +1,7 @@
 .post
   .post-title
     = @post.title
-  .post-body= @post.body    
+  .post-body= format @post.body    
 
 .post-title= @post.comments.count != 0 ? "Comments:" : "There is no comments yet."
 %a{:name => 'comments'}

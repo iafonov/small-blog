@@ -1,16 +1,15 @@
 require 'rubygems'
 require 'RMagick'
+require 'util/util.rb'
 
-class Image  
-  EXIF_DATE_FORMAT = '%Y:%m:%d %H:%M:%S'  
-
+class Image    
   attr_accessor :image_path
   attr_accessor :path
 
   def initialize(path_to_gallery, image)    
     @image_path = image
     @path = path_to_gallery    
-    @image = Magick::Image.read(File.join(Dir.pwd, "public/" + path)).first
+    # @image = Magick::Image.read(relative_to_absolute(path)).first
   end
 
   def preview_path
@@ -22,8 +21,9 @@ class Image
   end
 
   def date_taken        
-    date  = @image.get_exif_by_entry('DateTime')[0][1]    
-    DateTime.strptime(date, EXIF_DATE_FORMAT) if date    
+    # date  = @image.get_exif_by_entry('DateTime')[0][1]    
+    # DateTime.strptime(date, EXIF_DATE_FORMAT) if date    
+    "13 Oct 2009"
   end
 end
 
@@ -45,23 +45,21 @@ get '/gallery' do
   @galleries = Array.new
 
   Dir.foreach("public/gallery") do |gallery|
-    if (gallery != ".") && (gallery != "..")      
-      gallery_path = "gallery/#{gallery}"
-      gallery_full_path = File.join(Dir.pwd, "public")
-      gallery_full_path = File.join(gallery_full_path, "gallery/#{gallery}")
-      if File.directory?(gallery_full_path)
+    if (gallery != ".") && (gallery != "..")
+      gallery_relative_path = "gallery/#{gallery}"
+      gallery_absolute_path = relative_to_absolute(gallery_relative_path)
+      
+      if File.directory?(gallery_absolute_path)
         gallery = Gallery.new(gallery)
 
-        Dir.foreach(gallery_full_path) do |image_file|
-          gallery.images << Image.new(gallery_path, image_file) if valid?(image_file)          
+        Dir.foreach(gallery_absolute_path) do |image|
+          gallery.images << Image.new(gallery_relative_path, image) if valid?(image)          
         end
 
         @galleries << gallery
       end
     end
-  end
-
-  puts @galleries.inspect
+  end  
 
   haml :gallery
 end

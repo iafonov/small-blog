@@ -4,10 +4,10 @@ require 'activerecord'
 
 require 'util/flash.rb'
 
-load 'configuration.rb'
-load 'helpers.rb'
+load 'config/config.rb'
+load 'util/helpers.rb'
 
-before do 
+before do
   @flash = get_flash
   @is_admin = session["i_am"]
 end
@@ -21,7 +21,6 @@ get '/' do
   redirect '/about'
 end
 
-load 'login.rb'
-load 'about.rb'
-load 'gallery.rb'
-load 'blog.rb'
+Dir.foreach("controllers") do |file|   
+  load "controllers/#{file}" unless File.directory? file
+end
