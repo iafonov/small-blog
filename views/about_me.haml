@@ -8,30 +8,41 @@
     #content
       = partial :navigation    
       
-      %p 
+      %p
         %img{ :id => 'me', :src => '/me.jpg', :align => 'right' }
         .mark Education
-        %p I was born in Donetsk in 1985. In 2007 I've graduated from Donetsk National Technical University (I've recieved master degree in CS and bachelor degree in buisness managment)......
+        %p
+          I was born in Donetsk in 1985. In 2007 I've graduated from Donetsk National Technical University (I've received 
+          %a{:href => "http://masters.donntu.edu.ua/2007/fvti/afonov/indexe.htm"} master degree in CS
+          and bachelor degree in business management).
         
-        %p I'm working as software developer..... Software development for me is more than just a work - it's my hobby. Specific areas of my professional interest include:
+        %p
+          I'm working as software developer in a small IT company 
+          %a{:href => "http://anahoret.com"}Anahoret.
+          Software development for me is more than just a work - it's my hobby.
         
         .mark Interests
-        Java - I have 2 years expirience in working with C++ (I've developed an enterprise 3D CAD system) and C++. Migrating from C++ to Java was like migrating from ... to ...
+        %p Specific areas of my professional interest include:                    
+        %b Java
+        &ndash; in java my favorite feature is its (<i>unlimited</i>) power and simplicity. Other attractive features for me is:
         %ul         
-          %li Java itself
-          %li Dependency injection containers (Google Guice, Tapestry IoC). I have expirience in building my own, custom IoC container based on annotations.
-          %li Dynamic languages built on top of JVM (Groovy, JRuby).        
-          %li Web-frameworks: Tapestry 5, custom made frameworks....
-        
-        Ruby - the main feature of ruby that attracts me is its outstanding flexibilty and code expressiveness....
+          %li Java (and JVM) itself as language
+          %li Parallel programming
+          %li Dependency injection containers (Google Guice, Tapestry IoC). I have experience in building my own, custom IoC container based on annotations
+          %li Dynamic languages built on top of the JVM (Groovy, JRuby)
+          %li Web-frameworks: Tapestry 5, custom made frameworks
+      
+        %b Ruby 
+        &ndash; the main feature of ruby that attracts me is its outstanding flexibility and code expressiveness (though its inherent for the most dynamic languages). Ruby-linked technologies linked with ruby that attract me is:
         %ul        
           %li 
-            Ligtweight web-framework Sinatra (This site is powered by Sinatra, 
+            Lightweight web-framework Sinatra (This site is powered by Sinatra, 
             %a{ :href => "/" } Read more...
             )
-          %li Haml+Sass template engine
-  
-        C++
+          %li Haml+Sass template engine, I like that simple concepts that lay in base of this technologies, maybe if I ever overcome my laziness I will port this beautiful technology to Java.
+
+        %b C++
+        &ndash; I like this old and fundamental language. I've closely worked with this language for 1.5 years - I've participated in development of enterprise 3D CAD system it was really intresting and challenging work.
         %ul
           %li I've worked for 1.5 years with C++ building 3D CAD application
           
