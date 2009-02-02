@@ -2,16 +2,19 @@ require 'rubygems'
 require 'sinatra'
 require 'RMagick'
 
+namespace 'test' do
+  task 'spec' do
+    
+  end
+end
 
 namespace 'db' do
   desc "Create db schema"
-  task :create do
-    mode = :development unless ENV.include?("mode")    
-
+  task :create do        
     require 'activerecord'
     require 'config/config.rb'
-       
-    connect_to_db(mode)    
+
+    ENV.include?("mode") ? connect_to_db(ENV["mode"]) : connect_to_db(:development)
   
     ActiveRecord::Migration.create_table :posts do |t|
       t.string :title
