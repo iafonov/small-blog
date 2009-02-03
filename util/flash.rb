@@ -7,5 +7,5 @@ def get_flash
 end
 
 def set_flash(message)
-  set_cookie("flash", :value => message, :path => '/')
+  response.set_cookie("flash", :value => message, :path => '/')
 end

@@ -2,9 +2,9 @@
 
 %form{ :action => "add", :method => "post"}
   Title:
-  %input{:name => "title"} 
+  %input{:name => "post[title]"} 
   %br
   Body: 
-  %textarea{:name=>"body", :cols => 80,  :rows => 40}
+  %textarea{:name=>"post[body]", :cols => 80,  :rows => 40}
   %br
   %input{:type=>"submit"}

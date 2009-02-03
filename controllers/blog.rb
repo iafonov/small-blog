@@ -17,7 +17,7 @@ get '/posts/add' do secure
 end
 
 post '/posts/add' do secure
-  Post.create(:title => params[:title], :body => params[:body])
+  Post.create(params[:post])
   set_flash 'New post created'
   redirect '/blog'
 end
@@ -49,7 +49,7 @@ end
 
 post '/posts/:id/add_comment' do
   post = Post.find(params[:id])
-  post.comments.create(:body => params[:body])
+  post.comments.create(params[:comment])
   set_flash 'Comment added'
   redirect '/posts/' + params[:id]
 end

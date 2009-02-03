@@ -37,6 +37,10 @@ class Gallery
   end
 end
 
+class GllaeryLoader
+  
+end
+
 def valid?(image)
   return image.include?(".jpg")
 end

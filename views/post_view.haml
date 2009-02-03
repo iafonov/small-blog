@@ -12,6 +12,6 @@
 %form{:action=> "#{@post.id}/add_comment", :method=>"post", :id => 'add-comment-form'}
   %ul
     %li
-      %textarea{:id => 'comment-area', :name => "body"}    
+      %textarea{:id => 'comment-area', :name => "comment[body]"}    
     %li
       %input{:id => 'comment-submit',:type=>"submit", :value=>"Add comment"}

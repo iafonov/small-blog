@@ -1,11 +1,13 @@
 require 'rubygems'
 require 'sinatra'
 require 'RMagick'
+require 'spec/rake/spectask'
 
-namespace 'test' do
-  task 'spec' do
-    
-  end
+
+desc "Run all specs"
+Spec::Rake::SpecTask.new('specs') do |t|  
+  t.spec_files = FileList['test/spec_*.rb']  
+  t.spec_opts = ['--options', 'test/spec.opts']  
 end
 
 namespace 'db' do
