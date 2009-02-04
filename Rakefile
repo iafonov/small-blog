@@ -10,6 +10,18 @@ Spec::Rake::SpecTask.new('specs') do |t|
   t.spec_opts = ['--options', 'test/spec.opts']  
 end
 
+namespace 'server' do
+  desc "Start production server on :5000"
+  task :start do
+    sh 'thin -s 1 -C config.yml -R rackup.ru start'
+  end
+
+  desc "Stop production server on :5000"
+  task :stop do
+    sh 'thin -s 1 -C config.yml -R rackup.ru stop'
+  end
+end
+
 namespace 'db' do
   desc "Create db schema"
   task :create do        
