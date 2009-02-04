@@ -5,7 +5,7 @@ user: root
 group: root
 port: 5000
 pid: /home/igor/ruby/small-blog/thin.pid
-rackup: /home/igor/ruby/small-blog/config/rackup.ru
+rackup: /home/igor/ruby/small-blog/rackup.ru
 log: /home/igor/ruby/small-blog/thin.log
 max_conns: 1024
 timeout: 30
