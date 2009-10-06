@@ -1,6 +1,6 @@
 - for post in @posts
   .post    
-    .mark 22.01.2008    
+    .mark #{post.created_at.strftime('%B %d')}  
     .post-title
       %a{:href => "posts/#{post.id}"}= post.title
       %a{:href => "posts/#{post.id}#comments", :style => "font-size: 75%"}= "(#{post.comments.count})"      
