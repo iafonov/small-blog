@@ -6,10 +6,13 @@ class Image
   attr_accessor :image_path
   attr_accessor :path
 
+  @@exif_date_format = '%Y:%m:%d %H:%M:%S'
+
+
   def initialize(path_to_gallery, image)    
     @image_path = image
-    @path = path_to_gallery    
-    # @image = Magick::Image.read(relative_to_absolute(path)).first
+    @path = path_to_gallery        
+    #@image = Magick::Image.read(path).first
   end
 
   def preview_path
@@ -20,10 +23,10 @@ class Image
     "#{@path}/#{@image_path}"
   end
 
-  def date_taken        
-    # date  = @image.get_exif_by_entry('DateTime')[0][1]    
-    # DateTime.strptime(date, EXIF_DATE_FORMAT) if date    
-    "13 Oct 2009"
+  def date_taken            
+    #date  = @image.get_exif_by_entry('DateTime')[0][1]        
+    #date = DateTime.strptime(date, @@exif_date_format) if date        
+    #date.strftime('%d %m %Y')    
   end
 end
 
@@ -35,10 +38,6 @@ class Gallery
     @name = name
     @images = Array.new
   end
-end
-
-class GllaeryLoader
-  
 end
 
 def valid?(image)

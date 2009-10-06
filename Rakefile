@@ -92,8 +92,9 @@ namespace 'gallery' do
 
     src_dir = ENV["src"]    
 
-    Dir.foreach(src_dir) do |gallery_dir|  
-      gallery_path = File.join(File.join(Dir.pwd, src_dir), gallery_dir)      
+    Dir.foreach(src_dir) do |gallery_dir| 
+      gallery_path = File.join(File.join(Dir.pwd, src_dir), gallery_dir) 
+
       if (File.directory?(gallery_path))        
         process_directory(gallery_path, gallery_dir)  
       end

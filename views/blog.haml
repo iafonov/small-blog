@@ -3,10 +3,10 @@
     .mark 22.01.2008    
     .post-title
       %a{:href => "posts/#{post.id}"}= post.title
+      %a{:href => "posts/#{post.id}#comments", :style => "font-size: 75%"}= "(#{post.comments.count})"      
     .post-body
       = format post.body     
-    .post-footer
-      %a{:href => "posts/#{post.id}#comments"}= "Comments(#{post.comments.count})"      
+    .post-footer      
       = for_me "%a{ :href => 'posts/edit/#{post.id}' } Edit"
       = for_me "%a{ :href => 'posts/delete/#{post.id}' } Delete"
   

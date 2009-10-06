@@ -3,6 +3,7 @@ $:.unshift File.dirname(__FILE__) + '/sinatra/lib'
 require 'rubygems'
 require 'sinatra'
 require 'activerecord'
+require 'sass'
 
 require 'util/flash.rb'
 

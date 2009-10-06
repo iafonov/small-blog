@@ -3,10 +3,10 @@ def connect_to_db(mode)
     :adapter => 'mysql',
     :encoding =>  'utf8',
     :username => 'root',
-    :password => '1',
+    #:password => '1',
     :host => 'localhost',
-    #:socket => '/var/lib/mysql/mysql.sock',
-    :socket => '/var/run/mysqld/mysqld.sock',
+    :socket => '/var/lib/mysql/mysql.sock',
+    #:socket => '/var/run/mysqld/mysqld.sock',
     :database => 'blog_' + mode.to_s
   )
 end

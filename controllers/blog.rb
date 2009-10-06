@@ -8,7 +8,7 @@ require 'util/flash.rb'
 require 'util/sessions.rb'
 
 get '/blog' do
-  @posts = Post.all()
+  @posts = Post.all(:order => 'created_at DESC')
   haml :blog, :layout => :layout_blog
 end
 
