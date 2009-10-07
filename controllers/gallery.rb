@@ -41,7 +41,7 @@ class Gallery
 end
 
 def valid?(image)
-  return image.include?(".jpg")
+  return image.downcase.include?(".jpg")
 end
 
 get '/gallery' do

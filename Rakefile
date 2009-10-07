@@ -45,6 +45,18 @@ namespace 'db' do
   
       t.timestamps
     end
+
+    ActiveRecord::Migration.create_table :tags do |t|    
+      t.string :tag
+  
+      t.timestamps
+    end
+
+    ActiveRecord::Migration.create_table :posts_tags, :id => false do |t|
+      t.integer "post_id", :null => false
+      t.integer "tag_id",  :null => false
+    end
+
   end
 end
 
@@ -71,7 +83,7 @@ namespace 'gallery' do
 
   def process_directory(dir, gallery_name)    
     Dir.foreach(dir) do |image|    
-      if image.include? ".jpg"
+      if image.downcase.include? ".jpg"
         puts "Processing #{dir}/#{image}" 
         
         image = Magick::Image.read("#{dir}/#{image}").first        

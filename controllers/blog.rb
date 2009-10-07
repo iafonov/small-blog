@@ -12,22 +12,30 @@ get '/blog' do
   haml :blog, :layout => :layout_blog
 end
 
-get '/posts/add' do secure 
+get '/posts/add' do secure
+  @tags = Tag.all
   haml :post_add
 end
 
 post '/posts/add' do secure
-  Post.create(params[:post])
+  post = Post.new
+
+  post.title = params[:title]
+  post.body  = params[:body]  
+  post.tags  = params[:tags].split(%r{,\s*}).map {|tag| tag = Tag.find_or_create_by_tag(:tag => tag)}
+    
+  post.save
+
   set_flash 'New post created'
   redirect '/blog'
 end
 
-get '/posts/edit/:id' do secure  
+get '/posts/edit/:id' do secure
   @post = Post.find(params[:id])
   haml :post_edit
 end
 
-post '/posts/edit/:id' do secure 
+post '/posts/edit/:id' do secure
   post = Post.find(params[:id])
   post.title = params[:title]
   post.body = params[:body]

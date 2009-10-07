@@ -2,9 +2,15 @@
 
 %form{ :action => "add", :method => "post"}
   Title:
-  %input{:name => "post[title]"} 
+  %input{:name => "title"} 
   %br
   Body: 
-  %textarea{:name=>"post[body]", :cols => 80,  :rows => 40}
+  %textarea{:name=>"body", :cols => 80,  :rows => 40}
   %br
+  Available tags:
+  - for tag in @tags
+    %a{:href => "blog/#{tag}", :class => "tag"}= tag
+  
+  Tags:
+  %input{:name => "tags", :value => "#{@tags}"} 
   %input{:type=>"submit"}
