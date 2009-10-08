@@ -3,12 +3,14 @@
   %meta{"http-equiv" => 'Content-Type', "content" => 'text/html'}
   %head    
     %link{ :rel=>"stylesheet", :href=>"/style.css", :type=>"text/css"}
-    %link{ :rel => "icon", :href => "/avatar.png"} 
+    %link{ :rel => "icon", :href => "/avatar.png"}     
 
     %title Blog
   %body{ :id => "blog" }
     #content
       = partial :navigation   
-      %br 
+      %br
       #flash= @flash
       = yield
+  :javascript
+    document.getElementById("rss").style.display = ''

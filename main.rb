@@ -24,6 +24,10 @@ get '/' do
   redirect '/about'
 end
 
+not_found do
+  '404'
+end
+
 Dir.foreach("controllers") do |file|   
   load "controllers/#{file}" unless File.directory? file
 end

@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'sinatra'
-require 'activerecord'
-
 require 'model/schema.rb'
 
 require 'util/flash.rb'
@@ -9,6 +5,12 @@ require 'util/sessions.rb'
 
 get '/blog' do
   @posts = Post.all(:order => 'created_at DESC')
+  haml :blog, :layout => :layout_blog
+end
+
+get '/tag/:tag' do    
+  tag = Tag.find_by_tag(params[:tag])
+  @posts = tag.posts
   haml :blog, :layout => :layout_blog
 end
 
