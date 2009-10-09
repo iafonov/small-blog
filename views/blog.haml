@@ -1,12 +1,13 @@
 - for post in @posts
-  .post    
-    .mark #{post.created_at.strftime('%B %d')}  
+  .post        
+    .mark #{post.created_at.strftime('%m/%d')}  
     .post-title
-      %a{:href => "posts/#{post.id}"}= post.title
-      %a{:href => "posts/#{post.id}#comments", :style => "font-size: 75%"}= "(#{post.comments.count})"      
+      %a{:href => "posts/#{post.id}"}= post.title            
     .post-body
       = format post.body     
-    .post-footer      
+    .post-footer            
+      %a{:href => "posts/#{post.id}#comments"}= "Comments(#{post.comments.count})"      
+      %br
       - for tag in post.tags
         %a{:href => "/tag/#{tag}", :class => "tag"}= tag
       %br
