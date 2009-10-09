@@ -8,7 +8,7 @@
       = format post.body     
     .post-footer      
       - for tag in post.tags
-        %a{:href => "tag/#{tag}", :class => "tag"}= tag
+        %a{:href => "/tag/#{tag}", :class => "tag"}= tag
       %br
       = for_me "%a{ :href => 'posts/edit/#{post.id}' } Edit"
       = for_me "%a{ :href => 'posts/delete/#{post.id}' } Delete"

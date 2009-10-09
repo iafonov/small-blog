@@ -19,6 +19,7 @@ end
 
 configure :development do  
   common_config(:development)
+  set :port, 31337
 end
 
 configure :test do
