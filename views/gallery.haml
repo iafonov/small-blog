@@ -20,6 +20,6 @@
         .mark= gallery.name
         .gallery
           - for image in gallery.images
-            %a{:href=> "#{image.path}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}", :tiptitle => "#{image.date_taken}"}     
+            %a{:href=> "#{image.path}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}"}     
               %img{:src => "#{image.preview_path}"}
               

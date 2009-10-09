@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'RMagick'
 require 'util/util.rb'
 
 class Image    
@@ -11,8 +10,7 @@ class Image
 
   def initialize(path_to_gallery, image)    
     @image_path = image
-    @path = path_to_gallery        
-    #@image = Magick::Image.read(path).first
+    @path = path_to_gallery            
   end
 
   def preview_path
@@ -21,12 +19,6 @@ class Image
 
   def path
     "#{@path}/#{@image_path}"
-  end
-
-  def date_taken            
-    #date  = @image.get_exif_by_entry('DateTime')[0][1]        
-    #date = DateTime.strptime(date, @@exif_date_format) if date        
-    #date.strftime('%d %m %Y')    
   end
 end
 
