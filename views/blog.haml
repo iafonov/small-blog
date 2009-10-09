@@ -1,6 +1,6 @@
 - for post in @posts
   .post        
-    .mark #{post.created_at.strftime('%m/%d')}  
+    .mark #{post.created_at.strftime('%d/%m')}  
     .post-title
       %a{:href => "posts/#{post.id}"}= post.title            
     .post-body

@@ -17,7 +17,7 @@
       %br
   
       - for gallery in @galleries        
-        .mark= gallery.name
+        .mark_gallery= gallery.name
         .gallery
           - for image in gallery.images
             %a{:href=> "#{image.path}", :rel => "lightbox[#{gallery.name}]", :title => "#{gallery.name}"}     
